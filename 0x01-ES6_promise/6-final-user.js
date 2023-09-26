@@ -6,12 +6,13 @@ export default async function handleProfileSignup(
   lastName,
   fileName,
 ) {
-  const result = [];
+  const ans = [];
   try {
     const user = await signUpUser(firstName, lastName);
-    result.push({ status: 'fulfilled', value: user });
-  } catch (err) {
-    result.push({
+    ans.push({ status: 'fulfilled', value: user });
+  }
+  catch (err) {
+    ans.push({
       status: 'rejected',
       value: err.toString(),
     });
@@ -19,13 +20,14 @@ export default async function handleProfileSignup(
 
   try {
     const upload = await uploadPhoto(fileName);
-    result.push({ status: 'fulfilled', value: upload });
-  } catch (err) {
-    result.push({
+    ans.push({ status: 'fulfilled', value: upload });
+  }
+  catch (err) {
+    ans.push({
       status: 'rejected',
       value: err.toString(),
     });
   }
 
-  return result;
+  return ans;
 }
